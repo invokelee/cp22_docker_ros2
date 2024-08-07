@@ -16,6 +16,7 @@ find_package(rmw REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 
 set(SDK_PATH "./sdk/")
 
@@ -37,6 +38,7 @@ ament_target_dependencies(ydlidar_node
   "sensor_msgs"
   "visualization_msgs"
   "geometry_msgs"
+  "std_srvs"
 )
 
 add_executable(ydlidar_client src/ydlidar_client.cpp)
@@ -45,6 +47,7 @@ ament_target_dependencies(ydlidar_client
   "sensor_msgs"
   "visualization_msgs"
   "geometry_msgs"
+  "std_srvs"
 )
 
 
