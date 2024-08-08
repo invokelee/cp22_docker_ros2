@@ -29,6 +29,6 @@ RUN echo "source /tortoise_ws/install/setup.bash" >> ~/.bashrc
 
 # Set the working folder at startup
 WORKDIR /tortoise_ws
-COPY ./tortoisebot_ros2_docker/tortoisebot-ros2-gazebo/entrypoint.sh ./
+# COPY ./tortoisebot_ros2_docker/tortoisebot-ros2-gazebo/entrypoint.sh ./
 CMD ["bash"]
 # CMD ["/tortoise_ws/entrypoint.sh"]

@@ -21,7 +21,7 @@ RUN source /opt/ros/galactic/setup.bash \
 WORKDIR /tortoise_ws/src
 COPY ./tortoisebot/tortoisebot_navigation ./tortoisebot_navigation
 COPY ./tortoisebot/tortoisebot_slam ./tortoisebot_slam
-COPY ./tortoisebot/ydlidar-ros2 ./ydlidar-ros2
+# COPY ./tortoisebot/ydlidar-ros2 ./ydlidar-ros2
 
 # RUN echo "export GAZEBO_MODEL_PATH=/neobotix_ws/src/neobotix_ros2/neo_simulation2/models:/neobotix_ws/src:/neobotix_ws/src/neobotix_ros2" >> ~/.bashrc
 # RUN echo "export GAZEBO_MODEL_PATH=/usr/share/gazebo-11/models:/usr/share/gazebo-11/models:/usr/share/gazebo-9/models:/usr/share/gazebo/models_robox" >> ~/.bashrc
@@ -35,6 +35,6 @@ RUN echo "source /tortoise_ws/install/setup.bash" >> ~/.bashrc
 
 # Set the working folder at startup
 WORKDIR /tortoise_ws
-COPY ./tortoisebot_ros2_docker/tortoisebot-ros2-slam/entrypoint.sh ./
+# COPY ./tortoisebot_ros2_docker/tortoisebot-ros2-slam/entrypoint.sh ./
 CMD ["bash"]
 # CMD ["/tortoise_ws/entrypoint.sh"]
