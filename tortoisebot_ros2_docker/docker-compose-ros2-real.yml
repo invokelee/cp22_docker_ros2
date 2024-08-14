@@ -1,0 +1,48 @@
+#version: "3.7"
+services:
+  tortoisebot-ros2-real:
+    image: invokelee/tortoisebot-ros2-real:1.0
+    privileged: true
+    hostname: real2_bringup
+    environment:    
+      - DISPLAY=${DISPLAY}
+      - ROS_MASTER_URI=http://real2_bringup:11311
+      - ROS_HOSTNAME=real2_bringup
+    command:
+      - /ros2_real/entrypoint.sh
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/mem:/dev/mem
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./tortoisebot-ros2-real/entrypoint.sh:/ros2_real/entrypoint.sh
+      # - ./tortoisebot-ros2-real/camerav2_410x308.yaml:/root/.ros/camera_info/camerav2_410x308.yaml
+      - real-static:/ros2_real/static/
+    networks:
+      - ros2_real_net
+
+  tortoisebot-ros2-slam-real:
+    image: invokelee/tortoisebot-ros2-slam-real:1.0
+    hostname: real2_slam
+    links:
+      - tortoisebot-ros2-real:real2_bringup
+    restart: on-failure
+    depends_on:
+      - tortoisebot-ros2-real
+    environment:    
+      - DISPLAY=${DISPLAY}
+      - ROS_MASTER_URI=http://real2_bringup:11311
+      - ROS_HOSTNAME=real2_slam
+    command:
+      - /ros2_slam/entrypoint.sh
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./tortoisebot-ros2-slam-real/entrypoint.sh:/ros2_slam/entrypoint.sh
+    networks:
+      - ros2_real_net
+
+volumes:
+  real-static:
+
+networks:
+  ros2_real_net:

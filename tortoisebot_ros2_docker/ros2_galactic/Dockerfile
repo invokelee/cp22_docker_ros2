@@ -1,4 +1,4 @@
-FROM osrf/ros:galactic-desktop
+FROM arm64v8/ros:galactic-ros-base-focal
 
 # Minimal setup
 RUN apt update \
@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN locale-gen en_US en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 ENV LANG en_US.UTF-8
 
-# Install ROS2 Humble
+# Install ROS2 Galactic
 RUN apt update \
  && apt install -y --no-install-recommends curl \
  && apt install -y --no-install-recommends gnupg2
@@ -29,5 +29,10 @@ RUN apt update \
  && apt install -y ros-galactic-robot-state-publisher \
  && apt install -y ros-galactic-joint-* \
  && apt install -y ros-galactic-gazebo-* 
+
+RUN apt-get install -y python3-rpi.gpio iputils-ping vim
+RUN apt-get install -y ros-galactic-v4l2-camera*
+RUN apt-get install -y libraspberrypi-bin libraspberrypi-dev
+RUN apt-get install -y ros-galactic-cartographer*
 
  RUN echo "source /opt/ros/galactic/setup.bash" >> ~/.bashrc
