@@ -3,10 +3,6 @@ FROM invokelee/galactic-base:1.0
 
 SHELL ["/bin/bash", "-c"]
 
-# Install some updates and utils
-# RUN apt-get update
-# RUN apt-get install -y python3-rpi.gpio iputils-ping vim
-
 # Create workspace
 RUN source /opt/ros/galactic/setup.bash \
  && mkdir -p /tortoise_ws/src \
